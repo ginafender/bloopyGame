@@ -1,0 +1,55 @@
+*{
+    background-color:darkkhaki;
+    padding:0;
+    margin:0;
+}
+
+img { /* banner image */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1024px;
+    height: 256;
+}
+
+p {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.playButton {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 100px;
+    height: 40px;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 12px;
+    background-color: cadetblue;
+    border: none;
+    font-family: "OCR A Std", monospace;
+    font-size: larger;
+    font-weight: bolder;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+table, th, td {
+    font-family: "OCR A Std", monospace;
+    border: 1px solid black;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr:nth-child(odd) {
+    background-color:burlywood;
+}
+
+tr:nth-child(even) {
+    background-color: #D6EEEE;
+}
