@@ -1,4 +1,4 @@
-*{
+body {
     background-color:darkkhaki;
     padding:0;
     margin:0;
@@ -8,14 +8,24 @@ img { /* banner image */
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 1024px;
-    height: 256;
+    width: 1440px;
+    height: 178px;
+}
+
+.box {
+    margin-left: auto;
+    margin-right: auto;
+    height: 100px;
+    width: 800px;
+    overflow-wrap: break-word;
 }
 
 p {
+    text-align: center;
     margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
+    font-family: "OCR A Std", monospace;
 }
 
 .playButton {
@@ -32,7 +42,7 @@ p {
     font-family: "OCR A Std", monospace;
     font-size: larger;
     font-weight: bolder;
-    margin-top: 30px;
+    margin-top: 200px;
     margin-left: auto;
     margin-right: auto;
 }

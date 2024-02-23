@@ -1,22 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <title>Game</title>
 <link rel="stylesheet" type="text/css" href="gamestyles.css"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 </head>
 
 <body>
-<script src="scripts.js"></script>
-<img src="../../images/bloopy banner.png" alt="page banner">
+    <img src="../../images/bloopy banner.png" alt="page banner">
 
-<a class="homeButton" style="text-decoration: none;"
-    href="../../index.html">Return Home</a>
+    <!-- buttons -->
+    <a class="homeButton" style="text-decoration: none;"
+        href="../../index.html">Return Home</a>
+    <a class="start" style="text-decoration: none;">Start</a>
 
-<div id="game">
-    <div id="character"></div>
-</div>
+    <!-- game id's -->
+    <div id="game">
 
+        <!-- character -->
+        <div id="bloopyStanding">
+            <img src="../../images/bloopycropped.png" alt="bloopy"/>
+        </div>
+        <div id="bloopyJumping">
+            <img src="../../images/bloopy jumping.png">
+        </div>
 
+        <!-- blocks -->
+        <div id="block">
+            <!-- code -->
+        </div>
+
+        <!-- eggs -->
+        <div id="egg">
+            <!-- code -->
+        </div>
+
+    </div>
+
+    <script src="gamescripts.js"></script>
 </body>
+
 </html>
