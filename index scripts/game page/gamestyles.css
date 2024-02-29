@@ -1,10 +1,20 @@
 body {
-    background-color:darkkhaki;
+    background:darkkhaki;
     padding:0;
     margin:0;
 }
 
+/* banner image */
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1440px;
+    height: 178px;
+}
+
 .homeButton {
+    text-decoration: none;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -42,91 +52,14 @@ body {
     margin-right: auto;
 }
 
-/* banner image */
-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 1440px;
-    height: 178px;
+#canvas1 {
+    position:absolute;
+    top: 75%;
+    bottom: 50%;
+    transform: translate(-50%, -50%);
+    border: 5px solid white;
 }
 
-#bloopyStanding img{
-    height: 80px;
-    width: auto;
-    border: none;
-    display: block;
-    padding: 0px;
-    margin: 0px;
-    background-color: none;
-
-    bottom: 0px;
-    left: 350px;
-    top: 1000px;
-    position: absolute;
-    
-}
-
-#bloopyJumping img{
-    height: 80px;
-    width: auto;
-    border: none;
-    display: block;
-    padding: 0px;
-    margin: 0px;
-    background-color: none;
-
-    bottom: 0px;
-    left: 350px;
-    top: 900px;
-    position: absolute;
-    
-}
-
-
-#bloopyJumping {
+#playerImage {
     display: none;
-}
-/* character controls */
-/* @keyframes jump {
-    0%{top: 1000px;}
-    30%{top: 900px;}
-    70%{top: 900px;}
-    100%{top: 1000px;}
-} */
-/* #bloopyJumping.jump img{
-    display: block;
-    animation: jump 350ms;
-} */
-
-#block {
-    width: 40px;
-    height: 40px;
-    border: none;
-    background-color: crimson;
-
-    bottom: 0px;   
-    left: 1500px;
-    top: 1050px;
-    position: absolute;
-
-    /* animation */
-    animation: block 2000ms infinite linear;
-}
-
-@keyframes block {
-    0%{left: 1500px;}
-    100%{left: 300px;}
-}
-
-#game {
-    padding: 0px;
-    margin: 150px;
-    width: 1440px;
-    height: 729px;
-    border: 3px solid black;
-    /* background-image: url("../../images/practice image.webp"); */
-    margin-top: 30px;
-    margin-left: auto;
-    margin-right: auto;
 }
