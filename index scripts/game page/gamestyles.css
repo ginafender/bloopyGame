@@ -11,14 +11,43 @@ img {
     height: 178px;
 }
 
+p {
+    text-align: center;
+    /* margin-top: 50px; */
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "OCR A Std", monospace;
+    position: relative;
+}
+
+.homeButton {
+    text-decoration: none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    width: 130px;
+    height: 40px;
+    text-align: center;
+    padding: 5px 5px;
+    border-radius: 12px;
+    background-color: cadetblue;
+    border: none;
+    font-family: "OCR A Std", monospace;
+    font-size: larger;
+    font-weight: bolder;
+    /* margin-top: 200px; */
+    margin-left: auto;
+    margin-right: auto;
+}
+
 #canvas1 {
     position: absolute;
-    top: 65%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     border: 5px solid white;
 }
 
-#playerImage {
+#playerImage, #jumpingImage, #gameOver {
     display: none;
 }
