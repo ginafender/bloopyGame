@@ -31,8 +31,8 @@ window.addEventListener('load', function(){
         constructor(gameWidth, gameHeight){
             this.gameWidth = gameWidth;
             this.gameHeight = gameHeight;
-            this.width = 100;
-            this.height = 69;
+            this.width = 96;
+            this.height = 93;
             this.x = 0;
             this.y = this.gameHeight - this.height;
             this.image = document.getElementById('playerImage');
@@ -51,7 +51,7 @@ window.addEventListener('load', function(){
             // hitboxes
             context.strokeStyle = 'white';
             context.beginPath();
-            context.arc(this.x + this.width/2, this.y+this.height/2, this.width/2, 0, Math.PI * 2);
+            context.arc(this.x + this.width/2, this.y + this.height/2, Math.min(this.width, this.height)/2, 0, Math.PI * 2);
             context.stroke();
         }
         update(input, deltaTime, enemies){
@@ -76,6 +76,7 @@ window.addEventListener('load', function(){
                 this.isJumping = false;
                 this.frameX = 0; // Set frame to 0 when not jumping and on the ground
             }
+
             // horizontal movement
             this.x += this.speed;
             if (this.x < 0) this.x = 0;
@@ -90,7 +91,6 @@ window.addEventListener('load', function(){
                 }
             }
             console.log('FrameX:', this.frameX);
-            // if (this.y > this.gameHeight -this.height) this.y = this.gameHeight - this.height;
 
             // collision detection
             enemies.forEach(enemy => {
@@ -99,8 +99,10 @@ window.addEventListener('load', function(){
                 const distance = Math.sqrt(dx*dx + dy*dy);
                 if (distance < enemy.width/2 + this.width/2){
                     gameOver = true;
+                    setTimeout(displayPlayAgainButton, 1000);
                 }
             });
+            console.log("Player position:", this.x, this.y);
         }
         onGround(){
             return this.y >= this.gameHeight - this.height;
@@ -122,7 +124,7 @@ window.addEventListener('load', function(){
             this.y = this.gameHeight - this.height;
             this.frameX = 0;
             this.speed = 3;
-            // this.speed = Math.random() * 3;
+            this.speed = Math.random() * 3;
             this.markedForDeletion = false;
         }
         draw(context){
@@ -132,22 +134,16 @@ window.addEventListener('load', function(){
             // hitboxes
             context.strokeStyle = 'white';
             context.beginPath();
-            context.arc(this.x + this.width/2, this.y+this.height/2, this.width/2, 0, Math.PI * 2);
+            context.arc(this.x + this.width/2, this.y + this.height/2, Math.min(this.width, this.height)/2, 0, Math.PI * 2);
             context.stroke();
         }
         update(deltaTime){
-            // if (this.frameTimer > this.frameInterval){
-            //     if (this.frameX >= this.maxFrame) this.frameX = 0;
-            //     else this.frameX ++;
-            //     this.frameTimer = 0;
-            // } else {
-            //     this.frameTimer += deltaTime;
-            // }
             this.x -= this.speed;
             if (this.x < 0 - this.width){
                 this.markedForDeletion = true;
                 score++;
             }
+            console.log("Enemy Position: ", this.x, this.y);
         }
     }
 
@@ -207,5 +203,21 @@ window.addEventListener('load', function(){
         if (!gameOver) requestAnimationFrame(animate);
     }
     animate(0);
+
+    // play again button
+    const playAgainButton = document.getElementById('playAgain');
+    playAgainButton.addEventListener('click', resetGame);
+
+    function resetGame(){
+        enemies = [];
+        score = 0;
+        gameOver = false;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        playAgainButton.style.display = 'none';
+        animate(0);
+    }
+    function displayPlayAgainButton(){
+        playAgainButton.style.display = 'block';
+    }
 
 });
