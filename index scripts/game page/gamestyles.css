@@ -48,7 +48,7 @@ p {
     border: 5px solid white;
 }
 
-#playerImage, #jumpingImage, #gameOver {
+#playerImage, #jumpingImage, #gameOver, #fuzzEnemy {
     display: none;
 }
 

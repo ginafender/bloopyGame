@@ -14,11 +14,15 @@ window.addEventListener('load', function(){
             window.addEventListener('keydown', e => {
                 this.keys.add(e.key);
                 e.preventDefault();
-                console.log('Key pressed:', e.key, this.keys);
+                if (e.key === 'ArrowUp'){
+                }
+                // console.log('Key pressed:', e.key, this.keys);
             });
             window.addEventListener('keyup', e => {
                 this.keys.delete(e.key);
-                console.log('Key released:', e.key, this.keys);
+                if (e.key === 'ArrowUp'){
+                }
+                // console.log('Key released:', e.key, this.keys);
             });
         }
     
@@ -41,18 +45,22 @@ window.addEventListener('load', function(){
             this.speed = 0;
             this.vy = 0;
             this.isJumping = false;
+            this.canJump = true;
             // add gravity
             this.weight = 1;
+            // set position for game reset
+            this.initialX = 0;
+            this.initialY = this.gameHeight - this.height;
         }
         draw(context, deltaTime){
             context.drawImage(this.image, this.frameX * this.width, 0, this.width, this.height, 
                 this.x, this.y, this.width, this.height);
             
-            // hitboxes
-            context.strokeStyle = 'white';
-            context.beginPath();
-            context.arc(this.x + this.width/2, this.y + this.height/2, Math.min(this.width, this.height)/2, 0, Math.PI * 2);
-            context.stroke();
+            // // hitboxes
+            // context.strokeStyle = 'white';
+            // context.beginPath();
+            // context.arc(this.x + this.width/2, this.y + this.height/2, Math.min(this.width, this.height)/2, 0, Math.PI * 2);
+            // context.stroke();
         }
         update(input, deltaTime, enemies){
             // controls
@@ -68,7 +76,7 @@ window.addEventListener('load', function(){
                 this.vy -= 25;
                 this.isJumping = true;
                 this.frameX = 1; // Set frame to 1 when jumping
-                console.log("Jumpies :3")
+                // console.log("Jumpies :3")
             } else if (!this.onGround()) {
                 this.isJumping = true;
                 this.frameX = 1; // Set frame to 1 when not on the ground (while jumping)
@@ -90,7 +98,7 @@ window.addEventListener('load', function(){
                 if (!this.isJumping) {
                 }
             }
-            console.log('FrameX:', this.frameX);
+            // console.log('FrameX:', this.frameX);
 
             // collision detection
             enemies.forEach(enemy => {
@@ -100,12 +108,20 @@ window.addEventListener('load', function(){
                 if (distance < enemy.width/2 + this.width/2){
                     gameOver = true;
                     setTimeout(displayPlayAgainButton, 1000);
+                    // console.log("DX: ", dx);
+                    // console.log("DY: ", dy);
+                    // console.log("Distance: ", distance);
                 }
             });
-            console.log("Player position:", this.x, this.y);
+            // console.log("Player position:", this.x, this.y);
         }
-        onGround(){
+        onGround() {
             return this.y >= this.gameHeight - this.height;
+        }
+        resetPosition(){
+            this.x = this.initialX;
+            this.y = this.initialY;
+            this.vy = 0;
         }
     }
 
@@ -119,38 +135,44 @@ window.addEventListener('load', function(){
             this.gameHeight = gameHeight;
             this.width = 60;
             this.height = 60;
-            this.image = document.getElementById('enemyImage');
+            this.image = document.getElementById('fuzzEnemy');
             this.x = this.gameWidth;
-            this.y = this.gameHeight - this.height;
+            this.y = Math.random() * (this.gameHeight - this.height);
             this.frameX = 0;
-            this.speed = 3;
-            this.speed = Math.random() * 3;
+            this.speed = Math.random() * 1;
             this.markedForDeletion = false;
+            // gravity
+            this.weight = 0.5;
         }
-        draw(context){
-            context.fillStyle = 'red';
-            context.fillRect(this.x, this.y, this.width, this.height)
+        draw(context, deltaTime){
+            context.drawImage(this.image, this.x, this.y, this.width, this.height);
 
-            // hitboxes
-            context.strokeStyle = 'white';
-            context.beginPath();
-            context.arc(this.x + this.width/2, this.y + this.height/2, Math.min(this.width, this.height)/2, 0, Math.PI * 2);
-            context.stroke();
+            // // hitboxes
+            // context.strokeStyle = 'white';
+            // context.beginPath();
+            // context.arc(this.x + this.width/2, this.y + this.height/2, Math.min(this.width, this.height)/2, 0, Math.PI * 2);
+            // context.stroke();
         }
         update(deltaTime){
-            this.x -= this.speed;
+            this.x -= this.speed * deltaTime;
+            this.y += this.weight * deltaTime;
+            // Ensure the enemy stays within the game height bounds
+            if (this.y + this.height > this.gameHeight) {
+                this.y = this.gameHeight - this.height;
+
+            }
             if (this.x < 0 - this.width){
                 this.markedForDeletion = true;
                 score++;
             }
-            console.log("Enemy Position: ", this.x, this.y);
+            // console.log("Enemy Position: ", this.x, this.y);
         }
     }
 
     function handleEnemies(deltaTime){
         if (enemies.length < 3 && enemyTimer > enemyInterval + randomEnemyInterval){
             enemies.push(new Enemy(canvas.width, canvas.height));
-            console.log(enemies);
+            // console.log(enemies);
             randomEnemyInterval = Math.random() * 1000 + 500;
             enemyTimer = 0;
         } else {
@@ -212,6 +234,7 @@ window.addEventListener('load', function(){
         enemies = [];
         score = 0;
         gameOver = false;
+        player.resetPosition();
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         playAgainButton.style.display = 'none';
         animate(0);
