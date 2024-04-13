@@ -7,7 +7,8 @@ This is a personal project that started as a school assingment. The assignment w
 # File Structure
 The files for the home page consist of:
 - index.html
-- styles.css.
+- styles.css
+
 The files for the game page include:
 - game.html
 - gamescripts.js
