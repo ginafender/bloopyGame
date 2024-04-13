@@ -34,7 +34,7 @@ The logic for bloopy was built using vanilla Javascript and HTML.
     - Handle Enemies:
       - The
     - Display Status Text:
-      - The
+      - The 
     - Animate:
       - The
     - Reset Game:
