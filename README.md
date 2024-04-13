@@ -32,10 +32,10 @@ The logic for bloopy was built using vanilla Javascript and HTML.
 
 2. Functions
     - Handle Enemies:
-      - The
+      - The function first checks if the number of enemies currently spawned is less than three and if enough time has elapsed since the last enemy spawn. It sets the enemy spawn to a random interval, lowering the predictability of enemy spawns. Finally, enemies that have moved off the screen are removed from the array. This not only allows space for new enemies to spawn but also prevents excessive data accumulation on the client's end.
     - Display Status Text:
-      - The 
+      - When the ```gameOver``` flag is set to true, the "Game Over" image is displayed on the canvas after a delay of 1000ms. The player's final score remains on the screen.
     - Animate:
-      - The
+      - This script establishes a game loop to manage the rendering and updating of game elements on a canvas. It initializes variables to control timing and enemy spawning intervals. The animate function, called repeatedly through requestAnimationFrame, computes the time difference between frames (deltaTime), clears the canvas, updates and draws the player, manages enemy spawning and behavior, and displays game status information. The loop iterates until the game concludes, ensuring smooth gameplay by synchronizing rendering with the browser's refresh rate.
     - Reset Game:
-      - The:
+      - This script sets up functionality for resetting the game state and displaying a "play again" button. It attaches a click event listener to an HTML element with the id ```playAgain```, triggering the resetGame function when clicked. The ```resetGame()``` function clears the canvas, resets game variables (such as enemies array and score), and hides the 'playAgain' button. Additionally, there's a ```displayPlayAgainButton()``` function to make the 'playAgain' button visible when called. Together, these functions enable the player to restart the game with a single click after it ends.
